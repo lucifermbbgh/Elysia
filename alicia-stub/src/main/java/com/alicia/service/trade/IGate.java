@@ -1,4 +1,4 @@
-package com.alicia.service;
+package com.alicia.service.trade;
 
 import java.util.Map;
 

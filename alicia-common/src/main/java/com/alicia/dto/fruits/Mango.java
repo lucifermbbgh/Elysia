@@ -1,26 +1,12 @@
 package com.alicia.dto.fruits;
 
-import com.alicia.dto.BaseDto;
-
-public class Mango implements BaseDto {
+public class Mango extends Fruits {
     private static final long serialVersionUID = 1L;
 
-    private Integer price;
-    private Integer weight;
+    private static final String NAME = "芒果";
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
+    public Mango() {
+        this.setName(NAME);
+        this.setPrice(20);
     }
 }

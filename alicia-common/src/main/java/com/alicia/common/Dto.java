@@ -1,4 +1,4 @@
-package com.alicia.dto;
+package com.alicia.common;
 
 import java.io.Serializable;
 

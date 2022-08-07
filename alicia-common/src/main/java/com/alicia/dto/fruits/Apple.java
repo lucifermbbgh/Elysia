@@ -7,6 +7,6 @@ public class Apple extends Fruits {
 
     public Apple() {
         this.setName(NAME);
-        this.setPrice(8);
+        this.setPrice(8d);
     }
 }

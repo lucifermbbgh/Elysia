@@ -1,21 +1,20 @@
 package com.alicia.core.dto;
 
 import com.alicia.core.dto.common.AbstractTradeDto;
-import com.alicia.dto.goods.Goods;
+import com.alicia.dto.fruits.Fruits;
+import com.alicia.dto.goods.FruitsSupMktGoods;
+import com.alicia.dto.person.FruitsSupMktCustomer;
 import com.alicia.dto.person.People;
+import com.alicia.factory.FruitsFactory;
+import com.alicia.util.DiscountMathUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ShoppingTradeDto extends AbstractTradeDto {
 
-    private Goods fruitsGoods;
     private People customer;
-
-    public Goods getFruitsGoods() {
-        return fruitsGoods;
-    }
-
-    public void setFruitsGoods(Goods fruitsGoods) {
-        this.fruitsGoods = fruitsGoods;
-    }
 
     public People getCustomer() {
         return customer;
@@ -23,5 +22,45 @@ public class ShoppingTradeDto extends AbstractTradeDto {
 
     public void setCustomer(People customer) {
         this.customer = customer;
+    }
+
+    public static ShoppingTradeDto getFruitsSupMktTradeInfo(Map<String, Object> inputParams) {
+        List<Map<String, Object>> goodsList = (List<Map<String, Object>>) inputParams.get("goodsList");
+        String peopleName = (String) inputParams.get("peopleName");
+        Integer peopleDiscountLevel = (Integer) inputParams.get("peopleDiscountLevel");
+
+        FruitsFactory factory = new FruitsFactory();
+        List<FruitsSupMktGoods> fruitsSupMktGoodsList = new ArrayList<>();
+        for (Map<String, Object> goods : goodsList) {
+            String goodsName = (String) goods.get("goodsName");
+            Integer goodsWeight = (Integer) goods.get("goodsWeight");
+            String goodsDiscountString = (String) goods.get("goodsDiscount");
+            double goodsDiscount = 1d;
+            if (!goodsDiscountString.isEmpty()) {
+                goodsDiscount = Double.parseDouble(goodsDiscountString);
+            }
+
+            Fruits fruits = factory.product(goodsName);
+            fruits.setWeight(goodsWeight);
+
+            FruitsSupMktGoods fruitsSupMktGoods = new FruitsSupMktGoods();
+            fruitsSupMktGoods.setFruits(fruits);
+            fruitsSupMktGoods.setWeight(goodsWeight);
+            fruitsSupMktGoods.setDiscount(goodsDiscount);
+            double goodsPrice = DiscountMathUtil.getDiscountPrice(fruits.getName(), fruits.getPrice(), goodsWeight, peopleDiscountLevel, goodsDiscount);
+            fruitsSupMktGoods.setPrice(goodsPrice);
+
+            fruitsSupMktGoodsList.add(fruitsSupMktGoods);
+        }
+
+        FruitsSupMktCustomer customer = new FruitsSupMktCustomer();
+        customer.setName(peopleName);
+        customer.setGoods(fruitsSupMktGoodsList);
+        customer.setDiscountLevel(peopleDiscountLevel);
+
+        ShoppingTradeDto shoppingTradeDto = new ShoppingTradeDto();
+        shoppingTradeDto.setCustomer(customer);
+
+        return shoppingTradeDto;
     }
 }

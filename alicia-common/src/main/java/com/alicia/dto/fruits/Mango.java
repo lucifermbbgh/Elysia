@@ -7,6 +7,6 @@ public class Mango extends Fruits {
 
     public Mango() {
         this.setName(NAME);
-        this.setPrice(20);
+        this.setPrice(20d);
     }
 }

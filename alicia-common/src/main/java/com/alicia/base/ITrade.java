@@ -1,4 +1,4 @@
-package com.alicia.service.base;
+package com.alicia.base;
 
 import com.alicia.dto.result.Result;
 

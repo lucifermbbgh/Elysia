@@ -7,6 +7,6 @@ public class Strawberry extends Fruits {
 
     public Strawberry() {
         this.setName(NAME);
-        this.setPrice(13);
+        this.setPrice(13d);
     }
 }

@@ -6,7 +6,7 @@ public class Fruits implements BaseDto {
     private static final long serialVersionUID = 1L;
 
     private String name;
-    private Integer price;
+    private double price;
     private Integer weight;
 
     public String getName() {
@@ -17,11 +17,11 @@ public class Fruits implements BaseDto {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

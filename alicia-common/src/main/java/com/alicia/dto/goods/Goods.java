@@ -2,18 +2,20 @@ package com.alicia.dto.goods;
 
 import com.alicia.common.BaseDto;
 
+import java.math.BigDecimal;
+
 public class Goods implements BaseDto {
     private static final long serialVersionUID = 1L;
 
-    private Integer price;
+    private double price;
     private Integer weight;
-    private Integer discount;
+    private double discount;
 
-    public Integer getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -25,11 +27,11 @@ public class Goods implements BaseDto {
         this.weight = weight;
     }
 
-    public Integer getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Integer discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 }

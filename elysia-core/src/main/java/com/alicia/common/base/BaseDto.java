@@ -1,4 +1,6 @@
 package com.alicia.common.base;
 
-public interface BaseDto extends Dto {
+import java.io.Serializable;
+
+public interface BaseDto extends Serializable {
 }

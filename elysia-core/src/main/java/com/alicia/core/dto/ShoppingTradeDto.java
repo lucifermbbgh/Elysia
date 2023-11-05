@@ -1,12 +1,12 @@
 package com.alicia.core.dto;
 
-import com.alicia.core.dto.common.AbstractTradeDto;
 import com.alicia.common.dto.fruits.Fruits;
 import com.alicia.common.dto.goods.FruitsSupMktGoods;
 import com.alicia.common.dto.person.FruitsSupMktCustomer;
 import com.alicia.common.dto.person.People;
 import com.alicia.common.factory.FruitsFactory;
 import com.alicia.common.util.DiscountMathUtil;
+import com.alicia.core.dto.common.AbstractTradeDto;
 
 import java.util.ArrayList;
 import java.util.List;

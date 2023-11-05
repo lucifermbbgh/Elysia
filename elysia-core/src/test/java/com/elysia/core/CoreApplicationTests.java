@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
-class CoreApplicationTests {
+public class CoreApplicationTests {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(CoreApplicationTests.class, args);
         JdbcTemplate jdbcTemplate = context.getBean(JdbcTemplate.class);

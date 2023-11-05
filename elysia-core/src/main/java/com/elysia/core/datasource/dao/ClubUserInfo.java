@@ -2,8 +2,6 @@ package com.elysia.core.datasource.dao;
 
 import com.elysia.common.base.BaseDao;
 
-import java.util.Date;
-
 public class ClubUserInfo extends BaseDao {
     private String id;
 
@@ -37,9 +35,9 @@ public class ClubUserInfo extends BaseDao {
 
     private String roleid;
 
-    private Date registrationDate;
+    private String registrationDate;
 
-    private Date lastloginDate;
+    private String lastloginDate;
 
     private String createUser;
 
@@ -181,19 +179,19 @@ public class ClubUserInfo extends BaseDao {
         this.roleid = roleid == null ? null : roleid.trim();
     }
 
-    public Date getRegistrationDate() {
+    public String getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
     }
 
-    public Date getLastloginDate() {
+    public String getLastloginDate() {
         return lastloginDate;
     }
 
-    public void setLastloginDate(Date lastloginDate) {
+    public void setLastloginDate(String lastloginDate) {
         this.lastloginDate = lastloginDate;
     }
 
@@ -243,5 +241,35 @@ public class ClubUserInfo extends BaseDao {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "ClubUserInfo{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", gender=" + gender +
+                ", birthdate='" + birthdate + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", postalcode='" + postalcode + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", status=" + status +
+                ", roleid='" + roleid + '\'' +
+                ", registrationDate='" + registrationDate + '\'' +
+                ", lastloginDate='" + lastloginDate + '\'' +
+                ", createUser='" + createUser + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateUser='" + updateUser + '\'' +
+                ", updateDate='" + updateDate + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
     }
 }

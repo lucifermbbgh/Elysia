@@ -1,12 +1,11 @@
 package com.elysia.core.trade;
 
 import com.elysia.common.base.ITrade;
-import com.elysia.core.dto.ShoppingTradeDto;
 import com.elysia.common.dto.goods.FruitsSupMktGoods;
 import com.elysia.common.dto.person.FruitsSupMktCustomer;
 import com.elysia.common.dto.result.Result;
 import com.elysia.common.util.DiscountMathUtil;
-import org.springframework.stereotype.Component;
+import com.elysia.core.dto.ShoppingTradeDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Component
 public class ShoppingTrade implements ITrade {
 
     @Override

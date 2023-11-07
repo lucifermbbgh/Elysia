@@ -1,12 +1,9 @@
-package com.elysia.core.datasource.mappers;
+package com.elysia.core.mappers;
 
-import com.elysia.core.datasource.dao.ClubUserInfo;
-import com.elysia.core.datasource.dao.ClubUserInfoExample;
+import com.elysia.core.pojo.ClubUserInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 @Mapper
 public interface ClubUserInfoMapper {
@@ -27,8 +24,6 @@ public interface ClubUserInfoMapper {
     int insert(ClubUserInfo clubUserInfo);
 
     int insertSelective(ClubUserInfo clubUserInfo);
-
-    List<ClubUserInfo> selectByExample(ClubUserInfoExample example);
 
     @Select("<script>" +
             "select " +

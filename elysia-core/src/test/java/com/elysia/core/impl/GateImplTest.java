@@ -1,8 +1,8 @@
 package com.elysia.core.impl;
 
 import com.elysia.core.service.impl.GateImpl;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 

@@ -1,7 +1,9 @@
 package com.elysia.core.service;
 
-import com.elysia.core.datasource.dao.ClubUserInfo;
+import com.elysia.core.pojo.ClubUserInfo;
 
 public interface ClubUserInfoService {
-    public ClubUserInfo selectByPrimaryKey(String id);
+    public ClubUserInfo getUserInfo(String id);
+
+    public void addUser(ClubUserInfo clubUserInfo);
 }

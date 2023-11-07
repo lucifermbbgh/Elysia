@@ -1,7 +1,7 @@
 package com.elysia.core.service.impl;
 
-import com.elysia.core.datasource.dao.ClubUserInfo;
-import com.elysia.core.datasource.mappers.ClubUserInfoMapper;
+import com.elysia.core.pojo.ClubUserInfo;
+import com.elysia.core.mappers.ClubUserInfoMapper;
 import com.elysia.core.service.ClubUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,16 @@ public class ClubUserInfoServiceImpl implements ClubUserInfoService {
     private ClubUserInfoMapper clubUserInfoMapper;
 
     @Override
-    public ClubUserInfo selectByPrimaryKey(String id) {
+    public ClubUserInfo getUserInfo(String id) {
+        ClubUserInfo clubUserInfo = new ClubUserInfo();
+        clubUserInfo.toString();
         return clubUserInfoMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public void addUser(ClubUserInfo clubUserInfo) {
+        clubUserInfoMapper.insert(clubUserInfo);
+    }
+
+
 }

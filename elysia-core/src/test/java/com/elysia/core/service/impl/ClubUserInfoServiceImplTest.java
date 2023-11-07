@@ -1,6 +1,6 @@
 package com.elysia.core.service.impl;
 
-import com.elysia.core.datasource.dao.ClubUserInfo;
+import com.elysia.core.pojo.ClubUserInfo;
 import com.elysia.core.service.ClubUserInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class ClubUserInfoServiceImplTest {
 
     @Test
     public void test(){
-        ClubUserInfo clubUserInfo = clubUserInfoService.selectByPrimaryKey("1");
+        ClubUserInfo clubUserInfo = clubUserInfoService.getUserInfo("1");
         System.out.println(clubUserInfo.toString());
     }
 }

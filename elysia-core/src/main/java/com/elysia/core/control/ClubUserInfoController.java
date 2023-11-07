@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -30,8 +29,9 @@ public class ClubUserInfoController {
             clubUserInfoService.addUser(clubUserInfo);
             return Result.returnSuccess(null);
         } catch (Exception e) {
-            Map<String, Object> errorInfo = new HashMap<>();
-            return Result.returnFail(errorInfo);
+            String errorCode = "";
+            String errorInfo = "";
+            return Result.returnFail(errorCode, errorInfo);
         }
     }
 }

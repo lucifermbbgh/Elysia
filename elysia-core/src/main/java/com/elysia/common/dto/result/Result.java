@@ -1,10 +1,14 @@
 package com.elysia.common.dto.result;
 
 import com.elysia.common.base.BaseDto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Map;
-
-public class Result extends BaseDto {
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Result<T> extends BaseDto {
     private static final long serialVersionUID = 1L;
 
     public static final Integer SUCCESS = 0;
@@ -12,42 +16,48 @@ public class Result extends BaseDto {
     public static final Integer UNKNOWN = 2;
 
     private Integer resultCode;
-    private Map<String, Object> retInfo;
+    private String errorCode;
+    private String errorInfo;
+    private T data;
 
-    public Integer getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(Integer resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public Map<String, Object> getRetInfo() {
-        return retInfo;
-    }
-
-    public void setRetInfo(Map<String, Object> retInfo) {
-        this.retInfo = retInfo;
-    }
-
-    public static Result returnSuccess(Map<String, Object> outputParams) {
+    public static <E> Result<E> returnSuccess(E data) {
         Result result = new Result();
         result.setResultCode(SUCCESS);
-        result.setRetInfo(outputParams);
+        result.setData(data);
         return result;
     }
 
-    public static Result returnFail(Map<String, Object> outputParams) {
+    public static <E> Result<E> returnFail(String errorCode, String errorInfo, E data) {
         Result result = new Result();
         result.setResultCode(FAIL);
-        result.setRetInfo(outputParams);
+        result.setErrorCode(errorCode);
+        result.setErrorInfo(errorInfo);
+        result.setData(data);
         return result;
     }
 
-    public static Result returnUnknown(Map<String, Object> outputParams) {
+    public static <E> Result<E> returnUnknown(String errorCode, String errorInfo, E data) {
         Result result = new Result();
         result.setResultCode(UNKNOWN);
-        result.setRetInfo(outputParams);
+        result.setErrorCode(errorCode);
+        result.setErrorInfo(errorInfo);
+        result.setData(data);
+        return result;
+    }
+
+    public static Result returnFail(String errorCode, String errorInfo) {
+        Result result = new Result();
+        result.setResultCode(FAIL);
+        result.setErrorCode(errorCode);
+        result.setErrorInfo(errorInfo);
+        return result;
+    }
+
+    public static Result returnUnknown(String errorCode, String errorInfo) {
+        Result result = new Result();
+        result.setResultCode(UNKNOWN);
+        result.setErrorCode(errorCode);
+        result.setErrorInfo(errorInfo);
         return result;
     }
 }

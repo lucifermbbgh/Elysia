@@ -17,7 +17,7 @@ public class ShoppingTradeTest extends UnitTestBase {
     public void shoppingTest() {
         Map<String, Object> inputParams = getInputParams();
         Result result = shoppingTrade.excute(inputParams);
-        Map<String, Object> outputParams = result.getRetInfo();
+        Map<String, Object> outputParams = (Map<String, Object>) result.getData();
 
         String peopleName = (String) outputParams.get("peopleName");
         double goodsCountPrice = (double) outputParams.get("goodsCountPrice");

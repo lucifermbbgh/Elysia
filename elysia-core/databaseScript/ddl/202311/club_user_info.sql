@@ -16,7 +16,7 @@ CREATE TABLE `club_user_info`
     `POSTALCODE`        varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL DEFAULT NULL COMMENT '邮政编码',
     `AVATAR`            varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '头像',
     `STATUS`            tinyint(4)                                                    NULL DEFAULT NULL COMMENT '用户账号状态',
-    `ROLEID`            varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL DEFAULT NULL COMMENT '用户角色ID',
+    `ROLE_ID`           varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL DEFAULT NULL COMMENT '用户角色ID',
     `REGISTRATION_DATE` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL DEFAULT NULL COMMENT '用户注册日期',
     `LASTLOGIN_DATE`    varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL DEFAULT NULL COMMENT '最后登录日期',
     `CREATE_USER`       varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL DEFAULT NULL COMMENT '创建用户',

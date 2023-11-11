@@ -20,7 +20,7 @@ public class ClubUserInfo extends BaseDao {
     private String postalcode;// 居住地邮编
     private String avatar;// 头像
     private Byte status;// 用户账号状态
-    private String roleid;// 用户角色ID
+    private String roleId;// 用户角色ID
     private String registrationDate;// 用户注册日期
     private String lastloginDate;// 最后登录日期
     private String createUser;// 创建用户

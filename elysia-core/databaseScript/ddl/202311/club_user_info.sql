@@ -1,3 +1,6 @@
+create database elysia;
+use elysia;
+
 DROP TABLE IF EXISTS `club_user_info`;
 CREATE TABLE `club_user_info`
 (

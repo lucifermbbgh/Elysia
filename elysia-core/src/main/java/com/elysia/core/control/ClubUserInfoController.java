@@ -31,7 +31,6 @@ public class ClubUserInfoController {
     @RequestMapping("/register")
     public Result addUserInfo(@RequestParam ClubUserInfo clubUserInfo) {
         try {
-
             String username = clubUserInfo.getUsername();
 
             clubUserInfoService.addUser(clubUserInfo);

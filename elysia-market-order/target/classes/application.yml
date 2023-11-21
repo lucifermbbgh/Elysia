@@ -1,0 +1,20 @@
+server:
+  port: 8011
+spring:
+  application:
+    name: elysia-market-order-service
+  profiles:
+    default: dev
+  datasource:
+    url: jdbc:mysql://${elysia.db.host}/elysia
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${elysia.db.username}
+    password: ${elysia.db.password}
+  cloud:
+    nacos:
+      server-addr: 192.168.17.133:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+        ephemeral: true #nacos注册服务提供方设置为非临时实例

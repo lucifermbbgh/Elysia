@@ -33,7 +33,7 @@
             <!-- 是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
             <!-- 从数据库返回的值去掉前后空格 -->
-            <property name="rootClass" value="com.elysia.common.base.BaseDao"/>
+            <property name="rootClass" value="base.common.com.elysia.market.BaseDao"/>
             <!-- 从数据库返回的值去掉前后空格 -->
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

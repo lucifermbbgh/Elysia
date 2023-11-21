@@ -1,5 +1,0 @@
-com\elysia\market\order\mapper\ElysiaMarketOrderMapper.class
-com\elysia\market\order\config\RestTemplateConfig.class
-com\elysia\market\order\service\OrderServiceImpl.class
-com\elysia\market\order\pojo\MarketOrderInfo.class
-com\elysia\market\order\ElysiaMarketOrderApplication.class

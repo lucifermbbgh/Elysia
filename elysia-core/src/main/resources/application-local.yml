@@ -1,0 +1,5 @@
+#####MYSQL CONNECT CONFIG#####
+elysia:
+  db:
+    host: localhost
+    pswd: root

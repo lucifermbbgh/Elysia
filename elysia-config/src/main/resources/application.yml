@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://${elysia.db.host}/elysia
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${elysia.db.username}
+    password: ${elysia.db.password}

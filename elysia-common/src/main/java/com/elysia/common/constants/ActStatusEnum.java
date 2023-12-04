@@ -1,5 +1,7 @@
 package com.elysia.common.constants;
 
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Optional;

@@ -1,10 +1,12 @@
 server:
-  port: 8010
+  port: 8002
+  servlet:
+    context-path: /market-stock
 spring:
   application:
     name: elysia-market-stock-service
   profiles:
-    default: dev
+    default: local
   datasource:
     url: jdbc:mysql://${elysia.db.host}/elysia
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,8 +14,17 @@ spring:
     password: ${elysia.db.password}
   cloud:
     nacos:
-      server-addr: 192.168.17.133:8848
+      server-addr: ${elysia.nacos.host}
       discovery:
-        username: nacos
-        password: nacos
+        username: ${elysia.nacos.username}
+        password: ${elysia.nacos.password}
         namespace: public
+        ephemeral: true #nacos注册服务提供方设置为非临时实例
+#消费者微服务名称（Nacos服务名）
+service-url:
+  nacos-user-service: http://elysia-market-order-service
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'

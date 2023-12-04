@@ -6,3 +6,7 @@ elysia:
     password: 123456
   redis:
     host: redis
+  nacos:
+    host: 192.168.17.133:8848
+    username: nacos
+    password: nacos

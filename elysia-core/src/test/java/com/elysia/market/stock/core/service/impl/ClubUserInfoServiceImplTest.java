@@ -1,7 +1,7 @@
 package com.elysia.market.stock.core.service.impl;
 
-import com.elysia.market.stock.core.pojo.ClubUserInfo;
-import com.elysia.market.stock.core.service.ClubUserInfoService;
+import com.elysia.core.pojo.ClubUserInfo;
+import com.elysia.core.service.ClubUserInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

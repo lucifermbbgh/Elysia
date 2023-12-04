@@ -1,8 +1,8 @@
 server:
-  port: 8011
+  port: 8001
 spring:
   application:
-    name: elysia-market-order-service
+    name: elysia-club-blog-service
   profiles:
     default: dev
   datasource:
@@ -12,9 +12,9 @@ spring:
     password: ${elysia.db.password}
   cloud:
     nacos:
-      server-addr: 192.168.17.133:8848
+      server-addr: ${elysia.nacos.host}
       discovery:
-        username: nacos
-        password: nacos
+        username: ${elysia.nacos.username}
+        password: ${elysia.nacos.password}
         namespace: public
         ephemeral: true #nacos注册服务提供方设置为非临时实例

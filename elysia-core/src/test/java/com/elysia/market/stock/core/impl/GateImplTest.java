@@ -1,6 +1,6 @@
 package com.elysia.market.stock.core.impl;
 
-import com.elysia.market.stock.core.service.impl.GateImpl;
+import com.elysia.core.service.impl.GateImpl;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 

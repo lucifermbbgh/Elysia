@@ -10,7 +10,7 @@
     <groupId>com.elysia</groupId>
     <artifactId>elysia-market-api</artifactId>
     <version>0.1.2-SNAPSHOT</version>
-    <name>elysia-club-api</name>
+    <name>elysia-market-api</name>
     <description>elysia-market-api</description>
     <properties>
         <java.version>1.8</java.version>
@@ -19,4 +19,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.elysia</groupId>
+            <artifactId>elysia-common</artifactId>
+            <version>0.1.2-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

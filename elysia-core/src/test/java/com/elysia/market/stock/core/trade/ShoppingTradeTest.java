@@ -1,6 +1,7 @@
 package com.elysia.market.stock.core.trade;
 
 import com.elysia.common.dto.result.Result;
+import com.elysia.core.trade.ShoppingTrade;
 import com.elysia.market.stock.core.common.UnitTestBase;
 import org.junit.jupiter.api.Test;
 

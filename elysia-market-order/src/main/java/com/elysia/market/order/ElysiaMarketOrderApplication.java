@@ -1,16 +1,15 @@
 package com.elysia.market.order;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients(basePackages = "com.elysia.*")
 public class ElysiaMarketOrderApplication {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ElysiaMarketOrderApplication.class);
-
     public static void main(String[] args) {
         SpringApplication.run(ElysiaMarketOrderApplication.class, args);
     }
-
 }

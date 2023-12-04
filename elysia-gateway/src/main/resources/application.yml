@@ -1,15 +1,56 @@
 server:
-  port: 8000
+  port: 9999
+  servlet:
+    context-path: /elysia
 spring:
   application:
     name: elysia-gateway
+  profiles:
+    default: local
+  datasource:
+    url: jdbc:mysql://${elysia.db.host}/elysia
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${elysia.db.username}
+    password: ${elysia.db.password}
   cloud:
-    gateway: #\u6E90\u7801\uFF1ARouteDefinition.java
-      routes: #\u8DEF\u7531\u6570\u7EC4\uFF1A\u6307\u7684\u662F\u5F53\u6EE1\u8DB3\u67D0\u79CD\u6761\u4EF6\u65F6\uFF0C\u7F51\u5173\u5C06\u8BF7\u6C42\u8F6C\u53D1\u5230\u6307\u5B9A\u7684\u5FAE\u670D\u52A1\u4E0A
-        - id: #\u5F53\u524D\u8DEF\u7531\u7684\u6807\u8BC6\uFF0C\u8981\u6C42\u552F\u4E00
-          uri: http://192.168.17.133:8848 #\u8BF7\u6C42\u6700\u7EC8\u8981\u88AB\u8F6C\u53D1\u5230\u7684\u5730\u5740
-          order: 1 #\u8DEF\u7531\u7684\u4F18\u5148\u7EA7\uFF0C\u6570\u5B57\u8D8A\u5C0F\u4EE3\u8868\u8DEF\u7531\u7684\u4F18\u5148\u7EA7\u8D8A\u9AD8
-          predicates: #\u65AD\u8A00\uFF08\u6761\u4EF6\u5224\u65AD\uFF0C\u8FD4\u56DE\u503C\u662Fboolean\uFF0C\u8F6C\u53D1\u8BF7\u6C42\u8981\u6EE1\u8DB3\u7684\u6761\u4EF6\uFF09\uFF08\u6570\u7EC4\uFF0C\u52A0\u6A2A\u6760-\uFF09
-            -
-          filters: #\u8FC7\u6EE4\u5668\uFF08\u5728\u8BF7\u6C42\u4F20\u9012\u7684\u8FC7\u7A0B\u4E2D\uFF0C\u5BF9\u8BF7\u6C42\u505A\u4E00\u4E9B\u8C03\u6574\uFF09\uFF08\u6570\u7EC4\uFF0C\u52A0\u6A2A\u6760-\uFF09
-            -
+    nacos:
+      server-addr: ${elysia.nacos.host}
+      discovery:
+        username: ${elysia.nacos.username}
+        password: ${elysia.nacos.password}
+        namespace: public
+        ephemeral: true #nacos注册服务提供方设置为非临时实例
+    gateway: #网关RouteDefinition.java
+      discovery:
+        locator:
+          # 开启Nacos注册中心路由功能
+          # 该属性控制的是是否与注册中心的服务发现功能相组合，通过serviceId转发到具体的服务实例。
+          # 默认为false，设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
+          # 如果不开启（false），路由规则负载均衡将由routes的断言来负责处理
+          enabled: false
+      routes: #路由规则配置【数组，所以用-来表达】【指的是当满足什么规则条件时将请求转发到相应的微服务上】
+        - id: elysia-market-order-service #路由ID，没有固定要求，但是要保证唯一，建议配合服务名
+          #          uri: http://localhost:8001/elysia-market-order-service #匹配提供服务的路由地址，最终的请求目的地
+          uri: lb://elysia-market-order-service #lb://这个代表开启负载均衡【LoadBalance】
+          order: 1 #路由的优先级，数字越小优先级越高
+          predicates: #断言（条件判断，返回值是boolean类型）
+            - Path=/market-order/** #路由匹配请求路径
+            - After=2023-11-30T17:12:36.658+08:00[Asia/Shanghai] # 在这个时间之后的请求都能通过
+        #          filters: #过滤器（指的是在请求传递过程中，对请求做一些修改）
+        #            - name:
+        - id: elysia-market-stock-service #路由ID，没有固定要求，但是要保证唯一，建议配合服务名
+          uri: lb://elysia-market-stock-service #匹配提供服务的路由地址，最终的请求目的地
+          order: 1 #路由的优先级，数字越小优先级越高
+          predicates: #断言（条件判断，返回值是boolean类型）
+            - Path=/elysia/market-stock/** #路由匹配请求路径
+#            - After=2023-11-30T17:12:36.658+08:00[Asia/Shanghai] # 在这个时间之后的请求都能通过
+#            - Before=2023-11-30T17:12:36.658+08:00[Asia/Shanghai] # 在这个时间之前的请求都能通过
+#            - Between=2023-11-30T17:12:36.658+08:00[Asia/Shanghai] # 在这个时间区间内的请求都能通过
+#            - Cookie=username,[a-z]+ # 逗号后是正则表达式，[a-z]+表示a-z小写字母，匹配Cookie的key和value（正则表达式）
+#            - Header=X-Request-Id,\d+ # 逗号后是正则表达式，\d表示数字
+#            - Host=**.elysia.com #匹配当前的主机地址发出的请求
+#            - Method=GET,POST # 匹配请求方式，例如：GET、POST
+#            - Query=id,.+ # 匹配请求参数，这里如果需要匹配多个参数，可以写多个Query
+#            - Query=orderId,.+ # 匹配请求参数，这里如果需要匹配多个参数，可以写多个Query
+          filters: #过滤器（指的是在请求传递过程中，对请求做一些修改）
+            - StripPrefix=2 #去掉地址中的第一部分，例如：请求http://localhost:9999/elysia/market-stock/elysia-market-stock-service/……地址，这里的功能就是将【/elysia】地址中的这一段去掉

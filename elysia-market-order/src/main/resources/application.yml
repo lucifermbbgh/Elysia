@@ -38,6 +38,13 @@ logging:
 feign:
   sentinel:
     enabled: true
+# rocketmq配置
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: elysia-market-order-producer
+  consumer:
+    group: elysia-market-order-consumer
 management:
   endpoint:
     web:

@@ -1,6 +1,6 @@
 package com.elysia.market.order.pojo.dto;
 
-import com.elysia.common.dto.goods.Goods;
+import com.elysia.common.pojo.dto.goods.Goods;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +19,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MarketOrderInfoDto {
-    private String id;
-    private String orderId;
-    private Integer status;
-    private List<Goods> goodsList;
-    private String goodsQuality;
+    private String id;// 订单ID
+    private Integer status;// 订单状态
+    private List<Goods> goodsList;// 商品列表
+    private String goodsTotalPrice;// 商品总价
+    private String orderDesc;// 订单描述
     private String createUser;// 创建用户
     private String createDate;// 创建日期
     private String createTime;// 创建时间

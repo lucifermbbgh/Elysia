@@ -1,9 +1,8 @@
 package com.elysia.market.order.service.impl;
 
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 import com.elysia.market.order.service.StockTestControllerService;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * @BelongsProject: Elysia

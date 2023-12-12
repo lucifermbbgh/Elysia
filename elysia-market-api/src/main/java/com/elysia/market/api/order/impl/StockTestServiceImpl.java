@@ -1,8 +1,7 @@
 package com.elysia.market.api.order.impl;
 
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 import com.elysia.market.api.order.StockTestService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**

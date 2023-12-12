@@ -1,6 +1,6 @@
 package com.elysia.market.stock.controller;
 
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 import com.elysia.market.api.stock.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

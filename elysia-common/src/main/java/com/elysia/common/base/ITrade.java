@@ -1,6 +1,6 @@
 package com.elysia.common.base;
 
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 
 import java.util.Map;
 

@@ -1,10 +1,10 @@
 package com.elysia.common.factory;
 
 import com.elysia.common.base.IFactory;
-import com.elysia.common.dto.fruits.Apple;
-import com.elysia.common.dto.fruits.Fruits;
-import com.elysia.common.dto.fruits.Mango;
-import com.elysia.common.dto.fruits.Strawberry;
+import com.elysia.common.pojo.dto.fruits.Apple;
+import com.elysia.common.pojo.dto.fruits.Fruits;
+import com.elysia.common.pojo.dto.fruits.Mango;
+import com.elysia.common.pojo.dto.fruits.Strawberry;
 
 public class FruitsFactory implements IFactory {
     @Override

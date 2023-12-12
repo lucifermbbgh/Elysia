@@ -1,8 +1,7 @@
-# Elysia
-spring-cloud-alibaba学习项目/r/n
+# Elysia：spring-cloud-alibaba学习项目
 
 ## 项目简介
-基于spring-cloud-alibaba的微服务项目，主要是学习spring-cloud-alibaba的各个组件，以及spring-cloud-alibaba的整合。/r/n
+基于spring-cloud-alibaba的微服务项目，主要是学习spring-cloud-alibaba的各个组件，以及spring-cloud-alibaba的整合。
 
 ## 项目结构
 ```
@@ -17,10 +16,34 @@ spring-cloud-alibaba学习项目/r/n
 ├──── elysia-market-stock
 ```
 
-目前已整合：
-nacos
-sentinel
-seata
-openFeign
+### 已整合：
+```
+spring-boot
+spring-cloud-alibaba-nacos-discovery
+spring-cloud-alibaba-nacos-config
+spring-cloud-alibaba-sentinel
+spring-cloud-alibaba-seata
+spring-cloud-openFeign
 spring-cloud-gateway
 rocketmq
+```
+
+### 未整合：
+```
+spring-cloud-alibaba-dubbo
+redis
+kafka
+zookeeper
+```
+
+### 部署方式：
+```
+docker-compose
+```
+
+### 未来计划：
+```
+netty
+kubernetes
+devops
+```

@@ -23,6 +23,7 @@ spring-cloud-alibaba-nacos-discovery
 spring-cloud-alibaba-nacos-config
 spring-cloud-alibaba-sentinel
 spring-cloud-alibaba-seata
+spring-cloud-ribbon
 spring-cloud-openFeign
 spring-cloud-gateway
 rocketmq

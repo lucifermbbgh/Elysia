@@ -1,8 +1,6 @@
 package com.elysia.market.api.order;
 
-import com.elysia.common.dto.result.Result;
-import com.elysia.market.api.order.impl.StockTestServiceImpl;
-import org.springframework.cloud.openfeign.FeignClient;
+import com.elysia.common.pojo.common.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

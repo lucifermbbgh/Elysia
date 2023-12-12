@@ -23,6 +23,21 @@ spring:
 #消费者微服务名称（Nacos服务名）
 service-url:
   nacos-user-service: http://elysia-market-order-service
+#日志监控的指定接口输出级别设置
+logging:
+  level:
+    com.elysia.market.api.order.StockTestService: debug
+# 激活Sentinel对OpenFeign的支持
+feign:
+  sentinel:
+    enabled: true
+# rocketmq配置
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: elysia-market-stock-producer
+  consumer:
+    group: elysia-market-stock-consumer
 management:
   endpoint:
     web:

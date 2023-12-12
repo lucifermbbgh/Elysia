@@ -2,7 +2,7 @@ package com.elysia.market.order.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 import com.elysia.common.exception.ServiceFailException;
 import com.elysia.market.order.handler.BlockExceptionHandler;
 import com.elysia.market.order.handler.FallbackExceptionHandler;

@@ -1,10 +1,9 @@
 package com.elysia.market.order.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 import com.elysia.common.util.IdGeneratorUtil;
 import com.elysia.market.api.order.IOrderService;
-import com.elysia.market.api.order.StockTestService;
 import com.elysia.market.order.handler.FallbackExceptionHandler;
 import com.elysia.market.order.service.StockTestControllerService;
 import lombok.extern.slf4j.Slf4j;

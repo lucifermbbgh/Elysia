@@ -1,6 +1,6 @@
 package com.elysia.market.order.handler;
 
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 
 /**
  * @BelongsProject: Elysia

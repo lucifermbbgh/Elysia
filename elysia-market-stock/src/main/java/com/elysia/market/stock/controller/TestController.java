@@ -1,6 +1,6 @@
 package com.elysia.market.stock.controller;
 
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

@@ -1,10 +1,10 @@
 package com.elysia.club.api.dto;
 
-import com.elysia.common.dto.common.AbstractTradeDto;
-import com.elysia.common.dto.fruits.Fruits;
-import com.elysia.common.dto.goods.FruitsSupMktGoods;
-import com.elysia.common.dto.person.FruitsSupMktCustomer;
-import com.elysia.common.dto.person.People;
+import com.elysia.common.pojo.common.AbstractTradeDto;
+import com.elysia.common.pojo.dto.fruits.Fruits;
+import com.elysia.common.pojo.dto.goods.FruitsSupMktGoods;
+import com.elysia.common.pojo.dto.person.FruitsSupMktCustomer;
+import com.elysia.common.pojo.dto.person.People;
 import com.elysia.common.factory.FruitsFactory;
 import com.elysia.common.util.DiscountMathUtil;
 

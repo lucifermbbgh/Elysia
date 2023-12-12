@@ -1,7 +1,7 @@
 package com.elysia.market.order.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.elysia.common.dto.result.Result;
+import com.elysia.common.pojo.common.Result;
 
 /**
  * @BelongsProject: Elysia

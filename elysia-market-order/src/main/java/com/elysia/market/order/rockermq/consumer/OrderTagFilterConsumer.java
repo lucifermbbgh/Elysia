@@ -2,6 +2,7 @@ package com.elysia.market.order.rockermq.consumer;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.MessageSelector;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
@@ -23,10 +24,15 @@ import java.util.List;
 public class OrderTagFilterConsumer {
     public static void main(String[] args) {
         // 创建消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("elysia-market-order-consumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("elysia-market-order-tagFilter-consumer");
+        // 指定NameServer地址
         consumer.setNamesrvAddr("127.0.0.1:9876");
         try {
-            consumer.subscribe("elysia-market-order-topic", "*");
+            String tagsFilterSql = "TAGS is not null " +
+                    "and TAGS in ('tagA','tagC') " +
+                    "and (a is not null and a between 0 and 3)";
+            MessageSelector messageSelector = MessageSelector.bySql(tagsFilterSql);
+            consumer.subscribe("elysia-market-order-tagFilter-topic", messageSelector);
             consumer.setMessageModel(MessageModel.CLUSTERING);
             consumer.registerMessageListener(getMessageListener());
             consumer.start();
@@ -58,13 +64,13 @@ public class OrderTagFilterConsumer {
                         String tags = msg.getTags();
                         // 获取消息体内容，并转换编码为utf-8
                         String msgBody = new String(msg.getBody(), "utf-8");
+                        String msgProperty = msg.getProperty("a");
                         // 创建一个字符串缓冲区，用于存储收到的消息信息
                         StringBuffer stringBuffer = new StringBuffer("收到消息：");
                         // 将消息信息追加到字符串缓冲区
-                        stringBuffer.append("===msgId: ").append(msg.getMsgId()).append("===")
-                                .append(msg.getStoreTimestamp() - msg.getBornTimestamp()).append("ms later.[")
-                                .append("topic: ").append(topic)
+                        stringBuffer.append("topic: ").append(topic)
                                 .append("===tags: ").append(tags)
+                                .append("===a: ").append(msgProperty)
                                 .append("===msgBody: ").append(msgBody).append("]");
                         // 打印字符串缓冲区中的消息信息
                         System.out.println(stringBuffer.toString());

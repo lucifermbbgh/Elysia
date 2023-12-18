@@ -21,18 +21,25 @@ import java.io.UnsupportedEncodingException;
 public class OrderTagFilterProducer {
     public static void main(String[] args) {
         // 创建生产者
-        DefaultMQProducer producer = new DefaultMQProducer("elysia-market-order-tag-producer");
+        DefaultMQProducer producer = new DefaultMQProducer("elysia-market-order-tagFilter-producer");
         // 设置NameServer地址
         producer.setNamesrvAddr("127.0.0.1:9876");
         try {
             // 启动生产者
             producer.start();
+            // 发送的消息的标签
+            String[] tags = new String[]{"tagA", "tagB", "tagC"};
+            // 发送10条消息
             for (int i = 0; i < 10; i++) {
-//                Message message = new Message("elysia-market-order-topic", "elysia-market-order-tag", "elysia-market-order-key", "elysia-market-order-body".getBytes());
-                Message message = new Message("elysia-market-order-topic",
-                        "elysia-market-order-tag",
-                        "elysia-market-order-key",
-                        ("elysia-market-order-body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+                // 创建消息
+                Message message = new Message("elysia-market-order-tagFilter-topic",
+                        tags[i % tags.length],
+                        "elysia-market-order-tagFilter-key",
+                        ("elysia-market-order-tagFilter-body" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+                // 设置消息属性
+//                message.putUserProperty("a", String.valueOf(i % (tags.length + 1)));
+                message.putUserProperty("a", String.valueOf(i));
+                // 发送消息
                 SendResult sendResult = producer.send(message);
                 System.out.println(sendResult);
             }
@@ -40,6 +47,7 @@ public class OrderTagFilterProducer {
                  InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
+            // 关闭生产者
             producer.shutdown();
         }
     }

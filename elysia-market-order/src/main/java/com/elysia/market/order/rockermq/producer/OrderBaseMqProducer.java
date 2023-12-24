@@ -25,7 +25,7 @@ import java.util.List;
  * @Version: 1.0
  */
 @Slf4j
-public class OrderSendProducer {
+public class OrderBaseMqProducer {
 
     public static DefaultMQProducer initProducer() {
         // 创建生产者，指定生产者组名为elysia-market-order-producer
@@ -49,8 +49,6 @@ public class OrderSendProducer {
         try {
             // 启动生产者
             producer.start();
-
-
         } catch (MQClientException e) {
             log.error("消息生产者创建失败，异常信息：{}", ExceptionUtils.getStackTrace(e));
         }
@@ -94,14 +92,14 @@ public class OrderSendProducer {
                 // 同步发送消息，指定发送超时时间，单位ms毫秒，默认3000ms
                 SendResult sendResult1 = producer.send(message, 1000 * 10);
                 // 同步发送消息，指定消息队列，指定消息队列选择器MessageQueueSelector
-                producer.send(message, new MessageQueueSelector() {
+                SendResult sendResult2 = producer.send(message, new MessageQueueSelector() {
                     @Override
                     public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
                         return mqs.get(0);
                     }
                 }, null);
                 // 同步发送消息，直接指定消息队列
-                producer.send(message, messageQueueList.get(0));
+                SendResult sendResult3 = producer.send(message, messageQueueList.get(0));
 
                 // 异步发送消息
                 producer.send(message, new SendCallback() {
@@ -129,9 +127,40 @@ public class OrderSendProducer {
                     }
                 }, 1000 * 10);
 
+                // 异步发送消息，指定消息队列，指定消息队列选择器MessageQueueSelector
+                producer.send(message, new MessageQueueSelector() {
+                    @Override
+                    public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+                        return mqs.get(0);
+                    }
+                }, new SendCallback() {
+                    @Override
+                    public void onSuccess(SendResult sendResult) {
+                        System.out.printf("%-10d OK %s %n", index, sendResult.getMsgId());
+                    }
+
+                    @Override
+                    public void onException(Throwable e) {
+                        System.out.printf("%-10d ERROR %s %n", index, ExceptionUtils.getStackTrace(e));
+                    }
+                }, 1000 * 10);
+
+                // 异步发送消息，直接指定消息队列
+                producer.send(message, messageQueueList.get(0), new SendCallback() {
+                    @Override
+                    public void onSuccess(SendResult sendResult) {
+                        System.out.printf("%-10d OK %s %n", index, sendResult.getMsgId());
+                    }
+
+                    @Override
+                    public void onException(Throwable e) {
+                        System.out.printf("%-10d ERROR %s %n", index, ExceptionUtils.getStackTrace(e));
+                    }
+                }, 1000 * 10);
             }
         } catch (MQClientException | UnsupportedEncodingException | RemotingException | MQBrokerException |
                  InterruptedException e) {
+            log.error("发送消息失败，错误信息：{}", ExceptionUtils.getStackTrace(e));
             throw new RuntimeException(e);
         } finally {
             // 关闭生产者

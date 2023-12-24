@@ -1,6 +1,9 @@
 package com.elysia.market.order.rockermq.producer;
 
+import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.elysia.common.constants.OrderStatusEnum;
+import com.elysia.common.util.DateUtils;
+import com.elysia.common.util.IdGeneratorUtil;
 import com.elysia.market.order.pojo.dto.MarketOrderInfoDto;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
@@ -14,6 +17,7 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,10 +25,10 @@ import java.util.List;
  * @BelongsPackage: com.elysia.market.order.rockermq
  * @Author: ElysiaKafka
  * @CreateTime: 2023-12-11  21:35:00
- * @Description: 延时消息生产者
+ * @Description: 顺序消息生产者
  * @Version: 1.0
  */
-public class OrderSynSendDelayProducer {
+public class OrderMqSynSendOrderlyProducer {
     public static void main(String[] args) {
         DefaultMQProducer producer = new DefaultMQProducer("elysia-market-order-producer");
         producer.setNamesrvAddr("127.0.0.1:9876");
@@ -38,9 +42,7 @@ public class OrderSynSendDelayProducer {
                         "elysia-market-order-tag",
                         "elysia-market-order-key",
                         orderInfo.getBytes(RemotingHelper.DEFAULT_CHARSET));
-                // 设置延迟消息，分为18个等级，从1开始，1-18，对应的延迟时间为：1s,5s,10s,30s,1m,2m,3m,4m,5m,6m,7m,8m,9m,10m,20m,30m,1h,2h
-                message.setDelayTimeLevel(3);
-                SendResult sendResult = producer.send(message);
+                SendResult sendResult = producer.send(message, getMessageaQueueSelector(), orderList.get(i).getId());
                 System.out.println(sendResult);
             }
         } catch (MQClientException | UnsupportedEncodingException | RemotingException | MQBrokerException |
@@ -65,5 +67,18 @@ public class OrderSynSendDelayProducer {
         }
 
         return orderList;
+    }
+
+    private static MessageQueueSelector getMessageaQueueSelector() {
+        MessageQueueSelector messageQueueSelector = new MessageQueueSelector() {
+            @Override
+            public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+                String id = arg.toString();
+                Long aLong = Long.valueOf(id);
+                long index = aLong % mqs.size();
+                return mqs.get((int) index);
+            }
+        };
+        return messageQueueSelector;
     }
 }

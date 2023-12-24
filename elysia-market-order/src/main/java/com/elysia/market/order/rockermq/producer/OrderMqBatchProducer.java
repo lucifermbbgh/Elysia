@@ -22,7 +22,7 @@ import java.util.List;
  * @Description: 批量消息生产者 + 消息列表拆分器 ===== 处理大批量消息性能瓶颈问题
  * @Version: 1.0
  */
-public class OrderBatchProducer {
+public class OrderMqBatchProducer {
     public static void main(String[] args) {
         // 创建一个消息生产者，并设置一个消息生产者组
         DefaultMQProducer producer = new DefaultMQProducer("elysia-market-order-batch-producer");

@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
  * @Description: 同步消息生产者
  * @Version: 1.0
  */
-public class OrderSynSendProducer {
+public class OrderMqSynSendProducer {
     public static void main(String[] args) {
         // 创建生产者
         DefaultMQProducer producer = new DefaultMQProducer("elysia-market-order-producer");

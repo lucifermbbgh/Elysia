@@ -20,7 +20,7 @@ import java.util.List;
  * @Description: 批量消费者
  * @Version: 1.0
  */
-public class OrderBatchConsumer {
+public class OrderMqBatchConsumer {
     public static void main(String[] args) {
         // 创建一个消息消费者，并设置一个消息消费者组
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("elysia-market-order-batch-consumer");

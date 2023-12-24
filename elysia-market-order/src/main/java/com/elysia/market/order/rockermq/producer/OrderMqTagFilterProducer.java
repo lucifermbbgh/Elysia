@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
  * @Description: 标签过滤消息生产者
  * @Version: 1.0
  */
-public class OrderTagFilterProducer {
+public class OrderMqTagFilterProducer {
     public static void main(String[] args) {
         // 创建生产者
         DefaultMQProducer producer = new DefaultMQProducer("elysia-market-order-tagFilter-producer");

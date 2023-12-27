@@ -38,6 +38,10 @@ logging:
 feign:
   sentinel:
     enabled: true
+# 激活Sentinel对RestTemplate的支持
+resttemplate:
+  sentinel:
+    enabled: true
 # rocketmq配置
 rocketmq:
   name-server: localhost:9876

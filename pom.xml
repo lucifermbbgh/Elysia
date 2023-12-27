@@ -97,17 +97,6 @@
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
-<!--        &lt;!&ndash;rocketmq事件驱动&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.apache.rocketmq</groupId>-->
-<!--                    <artifactId>rocketmq-client</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
         <!--添加rocketmq依赖-->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>

@@ -3,6 +3,7 @@ package com.elysia.market.order.rockermq.consumer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.MessageSelector;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
@@ -67,12 +68,17 @@ public class OrderBaseMqConsumer {
         // 创建消费者
         DefaultMQPushConsumer consumer = initConsumer();
         try {
-            // 订阅消息
+            // 订阅消息，根据正则表达式过滤
             consumer.subscribe("elysia-market-order-topic", "*");
+            // 订阅消息，根据SQL表达式过滤
+            consumer.subscribe("elysia-market-order-topic", MessageSelector.bySql("a between 0 and 3"));
+            // 订阅消息，根据Tag过滤
+            consumer.subscribe("elysia-market-order-topic", MessageSelector.byTag("tagA || tagB"));
             // 取消订阅消息
             consumer.unsubscribe("elysia-market-order-default-topic");
             // 获取消费者对主题分配了哪些消息队列
             Set<MessageQueue> messageQueues = consumer.fetchSubscribeMessageQueues("elysia-market-order-topic");
+
             // 注册消息监听器
             consumer.registerMessageListener(new MessageListenerConcurrently() {
                 @Override

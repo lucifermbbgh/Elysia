@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-DROP DATABASE IF EXISTS `nacos_config`;
-CREATE DATABASE `nacos_config` DEFAULT character set utf8mb4;
-SET names utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-USE `nacos_config`;
-
 /******************************************/
 /*   数据库全名 = nacos_config   */
 /*   表名称 = config_info   */

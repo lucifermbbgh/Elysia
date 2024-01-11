@@ -47,13 +47,14 @@ services:
     networks:
       - elysia-net
   #Nacos注册中心
-  nacos1:
+  nacos:
     #镜像名
     image: nacos/nacos-server
     #容器名
-    container_name: nacos1
+    container_name: nacos
     #映射端口
     ports:
+      - "7848:7848"
       - "8848:8848"
       - "9848:9848"
       - "9849:9849"
@@ -75,86 +76,9 @@ services:
       MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
     #数据卷
     volumes:
-      - "/home/elysiakafka/nacos1/data:/home/nacos/data"
-      - "/home/elysiakafka/nacos1/logs:/home/nacos/logs"
-      - "/home/elysiakafka/nacos1/conf:/home/nacos/conf"
-      - "/home/elysiakafka/nacos1/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
-    #依赖关系（依赖NGINX负载均衡）
-    depends_on:
-      - nginx
-    #网络空间
-    networks:
-      - elysia-net
-  #Nacos注册中心
-  nacos2:
-    #镜像名
-    image: nacos/nacos-server
-    #容器名
-    container_name: nacos2
-    #映射端口
-    ports:
-      - "8868:8868"
-      - "9868:9868"
-      - "9869:9869"
-    #跟随docker自动启动重启
-    restart: always
-    #容器的特权模式
-    privileged: true
-    #环境参数
-    environment:
-      MODE: cluster
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_DATABASE_NUM: 1
-      MYSQL_SERVICE_HOST: mysql
-      MYSQL_SERVICE_PORT: 3306
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: 123456
-      MYSQL_SERVICE_DB_NAME: nacos_config
-      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
-    #数据卷
-    volumes:
-      - "/home/elysiakafka/nacos2/data:/home/nacos/data"
-      - "/home/elysiakafka/nacos2/logs:/home/nacos/logs"
-      - "/home/elysiakafka/nacos2/conf:/home/nacos/conf"
-      - "/home/elysiakafka/nacos2/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
-    #依赖关系（依赖NGINX负载均衡）
-    depends_on:
-      - nginx
-    #网络空间
-    networks:
-      - elysia-net
-  #Nacos注册中心
-  nacos3:
-    #镜像名
-    image: nacos/nacos-server
-    #容器名
-    container_name: nacos3
-    #映射端口
-    ports:
-      - "8888:8888"
-      - "9888:9888"
-      - "9889:9889"
-    #跟随docker自动启动重启
-    restart: always
-    #容器的特权模式
-    privileged: true
-    #环境参数
-    environment:
-      MODE: cluster
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_DATABASE_NUM: 1
-      MYSQL_SERVICE_HOST: mysql
-      MYSQL_SERVICE_PORT: 3306
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: 123456
-      MYSQL_SERVICE_DB_NAME: nacos_config
-      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
-    #数据卷
-    volumes:
-      - "/home/elysiakafka/nacos3/data:/home/nacos/data"
-      - "/home/elysiakafka/nacos3/logs:/home/nacos/logs"
-      - "/home/elysiakafka/nacos3/conf:/home/nacos/conf"
-      - "/home/elysiakafka/nacos3/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
+      - "/home/elysiakafka/nacos/data:/home/nacos/data"
+      - "/home/elysiakafka/nacos/logs:/home/nacos/logs"
+      - "/home/elysiakafka/nacos/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
     #依赖关系（依赖NGINX负载均衡）
     depends_on:
       - nginx
@@ -167,4 +91,3 @@ networks:
   elysia-net:
     #网络名
     name: elysia
-

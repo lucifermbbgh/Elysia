@@ -52,8 +52,15 @@ services:
     image: nacos/nacos-server
     #容器名
     container_name: nacos1
+    #主机名
+    hostname: nacos1
     #映射端口
+    #7848：Nacos服务的HTTP API端口，用于处理服务发现、配置管理、命名服务等功能。
+    #8848：Nacos服务的HTTP UI端口，用于访问控制台和服务端监控页面。
+    #9848：Nacos服务的NETTY HTTP端口，用于处理HTTP请求
+    #9849：Nacos服务的NETTY TCP端口，用于处理TCP请求
     ports:
+      - "7848:7848"
       - "8848:8848"
       - "9848:9848"
       - "9849:9849"
@@ -66,6 +73,13 @@ services:
       MODE: cluster
       PREFER_HOST_MODE: hostname
       SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_DATABASE_NUM: 1
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 123456
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
     #数据卷
     volumes:
       - "/home/elysiakafka/nacos1/data:/home/nacos/data"
@@ -85,7 +99,12 @@ services:
     #容器名
     container_name: nacos2
     #映射端口
+    #7848：Nacos服务的HTTP API端口，用于处理服务发现、配置管理、命名服务等功能。
+    #8848：Nacos服务的HTTP UI端口，用于访问控制台和服务端监控页面。
+    #9848：Nacos服务的NETTY HTTP端口，用于处理HTTP请求
+    #9849：Nacos服务的NETTY TCP端口，用于处理TCP请求
     ports:
+      - "7868:7868"
       - "8868:8868"
       - "9868:9868"
       - "9869:9869"
@@ -96,8 +115,14 @@ services:
     #环境参数
     environment:
       MODE: cluster
-      PREFER_HOST_MODE: hostname
       SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_DATABASE_NUM: 1
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 123456
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
     #数据卷
     volumes:
       - "/home/elysiakafka/nacos2/data:/home/nacos/data"
@@ -117,7 +142,13 @@ services:
     #容器名
     container_name: nacos3
     #映射端口
+    #7848：Nacos服务的HTTP API端口，用于处理服务发现、配置管理、命名服务等功能。
+    #8848：Nacos服务的HTTP UI端口，用于访问控制台和服务端监控页面。
+    #9848：Nacos服务的NETTY HTTP端口，用于处理HTTP请求
+    #9849：Nacos服务的NETTY TCP端口，用于处理TCP请求
     ports:
+      -
+      - "7888:7888"
       - "8888:8888"
       - "9888:9888"
       - "9889:9889"
@@ -128,8 +159,14 @@ services:
     #环境参数
     environment:
       MODE: cluster
-      PREFER_HOST_MODE: hostname
       SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_DATABASE_NUM: 1
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 123456
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
     #数据卷
     volumes:
       - "/home/elysiakafka/nacos3/data:/home/nacos/data"
@@ -148,3 +185,4 @@ networks:
   elysia-net:
     #网络名
     name: elysia
+

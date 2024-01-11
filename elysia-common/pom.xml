@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.elysia</groupId>
-        <artifactId>elysia-parent</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
+        <artifactId>elysia-demo-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.elysia</groupId>
     <artifactId>elysia-common</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>elysia-common</name>
     <description>elysia-common</description>
     <properties>

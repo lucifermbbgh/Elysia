@@ -18,12 +18,12 @@ services:
       TZ: Asia/Shanghai
     #数据卷
     volumes:
-      - "/home/elysiakafka/mysql/conf.d:/etc/mysql/conf.d"
-      - "/home/elysiakafka/mysql/data:/var/lib/mysql"
-      - "/home/elysiakafka/mysql/log:/var/log/mysql"
+      - "/home/docker/mysql/conf.d:/etc/mysql/conf.d"
+      - "/home/docker/mysql/data:/var/lib/mysql"
+      - "/home/docker/mysql/log:/var/log/mysql"
     #网络空间
     networks:
-      - elysia-net
+      - docker-net
   #NGINX负载均衡代理
   nginx:
     #镜像名
@@ -37,15 +37,15 @@ services:
     restart: always
     #数据卷
     volumes:
-      - "/home/elysiakafka/nginx/nginx.conf:/etc/nginx/nginx.conf"
-      - "/home/elysiakafka/nginx/conf.d/:/etc/nginx/conf.d/"
-      - "/home/elysiakafka/nginx/html:/usr/share/nginx/"
+      - "/home/docker/nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "/home/docker/nginx/conf.d/:/etc/nginx/conf.d/"
+      - "/home/docker/nginx/html:/usr/share/nginx/"
     #依赖关系（依赖JAVA后端服务）
     depends_on:
       - mysql
     #网络空间
     networks:
-      - elysia-net
+      - docker-net
   #Nacos注册中心
   nacos1:
     #镜像名
@@ -68,16 +68,16 @@ services:
       SPRING_DATASOURCE_PLATFORM: mysql
     #数据卷
     volumes:
-      - "/home/elysiakafka/nacos1/data:/home/nacos/data"
-      - "/home/elysiakafka/nacos1/logs:/home/nacos/logs"
-      - "/home/elysiakafka/nacos1/conf:/home/nacos/conf"
-      - "/home/elysiakafka/nacos1/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
+      - "/home/docker/nacos1/data:/home/nacos/data"
+      - "/home/docker/nacos1/logs:/home/nacos/logs"
+      - "/home/docker/nacos1/conf:/home/nacos/conf"
+      - "/home/docker/nacos1/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
     #依赖关系（依赖NGINX负载均衡）
     depends_on:
       - nginx
     #网络空间
     networks:
-      - elysia-net
+      - docker-net
   #Nacos注册中心
   nacos2:
     #镜像名
@@ -100,16 +100,16 @@ services:
       SPRING_DATASOURCE_PLATFORM: mysql
     #数据卷
     volumes:
-      - "/home/elysiakafka/nacos2/data:/home/nacos/data"
-      - "/home/elysiakafka/nacos2/logs:/home/nacos/logs"
-      - "/home/elysiakafka/nacos2/conf:/home/nacos/conf"
-      - "/home/elysiakafka/nacos2/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
+      - "/home/docker/nacos2/data:/home/nacos/data"
+      - "/home/docker/nacos2/logs:/home/nacos/logs"
+      - "/home/docker/nacos2/conf:/home/nacos/conf"
+      - "/home/docker/nacos2/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
     #依赖关系（依赖NGINX负载均衡）
     depends_on:
       - nginx
     #网络空间
     networks:
-      - elysia-net
+      - docker-net
   #Nacos注册中心
   nacos3:
     #镜像名
@@ -132,19 +132,19 @@ services:
       SPRING_DATASOURCE_PLATFORM: mysql
     #数据卷
     volumes:
-      - "/home/elysiakafka/nacos3/data:/home/nacos/data"
-      - "/home/elysiakafka/nacos3/logs:/home/nacos/logs"
-      - "/home/elysiakafka/nacos3/conf:/home/nacos/conf"
-      - "/home/elysiakafka/nacos3/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
+      - "/home/docker/nacos3/data:/home/nacos/data"
+      - "/home/docker/nacos3/logs:/home/nacos/logs"
+      - "/home/docker/nacos3/conf:/home/nacos/conf"
+      - "/home/docker/nacos3/init.d/custom.properties:/etc/nacos/init.d/custom.properties"
     #依赖关系（依赖NGINX负载均衡）
     depends_on:
       - nginx
     #网络空间
     networks:
-      - elysia-net
+      - docker-net
 #网络空间
 networks:
   #网络标识
-  elysia-net:
+  docker-net:
     #网络名
-    name: elysia
+    name: docker

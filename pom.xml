@@ -3,21 +3,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.elysia</groupId>
-    <artifactId>elysia-parent</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <artifactId>elysia-demo-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>elysia-parent</name>
+    <name>elysia-demo-parent</name>
     <description>spring cloud alibaba development</description>
     <modules>
         <module>elysia-core</module>
         <module>elysia-common</module>
         <module>elysia-gateway</module>
-        <module>elysia-club-api</module>
-        <module>elysia-club-article</module>
-        <module>elysia-club-blog</module>
-        <module>elysia-market-api</module>
-        <module>elysia-market-order</module>
-        <module>elysia-market-stock</module>
         <module>elysia-config</module>
     </modules>
 

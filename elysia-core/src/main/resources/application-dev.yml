@@ -1,7 +1,0 @@
-#####MYSQL CONNECT CONFIG#####
-elysia:
-  db:
-    host: mysql
-    pswd: 123456
-  redis:
-    host: redis

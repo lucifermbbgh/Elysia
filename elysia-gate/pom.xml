@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.elysia</groupId>
         <artifactId>elysia-parent</artifactId>
-        <version>2.0.3-RELEASE</version>
+        <version>2.0.4-RELEASE</version>
     </parent>
     <artifactId>elysia-gate</artifactId>
     <name>elysia-gate</name>
     <description>Spring Security Center</description>
-
+    
     <properties>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,35 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- springCloud版本管理器 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- springCloudAlibaba版本管理器 -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- springboot版本管理器 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-parent</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!--spring-security依赖 START-->
@@ -199,6 +170,7 @@
         <dependency>
             <groupId>com.elysia</groupId>
             <artifactId>elysia-common</artifactId>
+            <version>2.0.0-RELEASE</version>
         </dependency>
     </dependencies>
 
@@ -219,6 +191,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
                 <configuration>
+                    <mainClass>com.elysia.gate.ElysiaGateApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

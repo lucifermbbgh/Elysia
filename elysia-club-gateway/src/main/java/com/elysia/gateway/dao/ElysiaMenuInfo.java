@@ -1,4 +1,4 @@
-package com.elysia.gateway.pojo.dao;
+package com.elysia.gateway.dao;
 
 import com.elysia.common.base.BaseDao;
 import lombok.AllArgsConstructor;

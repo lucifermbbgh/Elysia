@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Layout</title>
+    <style>        html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .header {
+        height: 10%;
+        background-color: lightgray;
+        color: black;
+    }
+
+    .body{
+        height: 90%;
+        background-color: lightgray;
+        color: black;
+    }
+
+    .left {
+        float: left;
+        width: 10%;
+        height: 100%;
+        background-color: aqua;
+    }
+
+    .right {
+        float: right;
+        width: 90%;
+        height: 100%;
+        background-color: lightblue;
+    }
+    </style>
+</head>
+<body>
+<div class="header">Header</div>
+<div class="body">
+    <div class="left">Left</div>
+    <div class="right">Right</div>
+</div>
+</body>
+</html>

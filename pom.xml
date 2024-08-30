@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.elysia</groupId>
+    <artifactId>elysia-parent</artifactId>
+    <version>2.0.4-RELEASE</version>
+    <packaging>pom</packaging>
+    <name>elysia-parent</name>
+    <description>spring cloud alibaba development</description>
+    <modules>
+        <module>elysia-common</module>
+        <module>elysia-club-api</module>
+        <module>elysia-club-article</module>
+        <module>elysia-club-blog</module>
+        <module>elysia-club-config</module>
+        <module>elysia-club-gateway</module>
+        <module>elysia-gate</module>
+        <module>elysia-market-config</module>
+        <module>elysia-market-gateway</module>
+        <module>elysia-market-api</module>
+        <module>elysia-market-order</module>
+        <module>elysia-market-stock</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring.boot.version>3.2.0</spring.boot.version>
+        <spring.boot.test.version>3.1.5</spring.boot.test.version>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2022.0.0.0-RC2</spring-cloud-alibaba.version>
+        <mybatis.springboot.version>3.0.2</mybatis.springboot.version>
+        <mysql.version>8.0.11</mysql.version>
+        <mapper.version>4.2.3</mapper.version>
+        <druid.version>1.1.20</druid.version>
+        <rocketmq.version>2.2.3</rocketmq.version>
+        <elysia-common.version>2.0.4-RELEASE</elysia-common.version>
+        <elysia-club-api.version>2.0.4-RELEASE</elysia-club-api.version>
+        <elysia-market-api.version>2.0.4-RELEASE</elysia-market-api.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- springCloud版本管理器 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- springCloudAlibaba版本管理器 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- springboot版本管理器 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--Springboot集成Mybatis-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.springboot.version}</version>
+            </dependency>
+            <!--MySQL8数据库驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!--Springboot集成druid连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--通用Mapper4之tk.mybatis（mybatis的增强）（类似mybatis-plus）-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>${mapper.version}</version>
+            </dependency>
+            <!--rocketmq依赖-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <!--spring-boot-starter-test-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.test.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- elysia-common -->
+            <dependency>
+                <groupId>com.elysia</groupId>
+                <artifactId>elysia-common</artifactId>
+                <version>${elysia-common.version}</version>
+            </dependency>
+            <!-- elysia-api -->
+            <dependency>
+                <groupId>com.elysia</groupId>
+                <artifactId>elysia-club-api</artifactId>
+                <version>${elysia-club-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.elysia</groupId>
+                <artifactId>elysia-market-api</artifactId>
+                <version>${elysia-market-api.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!--dubbo依赖-->
+        <!--<dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>3.2.4</version>
+        </dependency>-->
+
+        <!--dubbo依赖-->
+        <!--<dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-dubbo</artifactId>
+            <version>2.2.0.RELEASE</version>
+        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,13 @@
+com\elysia\club\api\pojo\ClubUserRole.class
+com\elysia\club\api\pojo\ClubMenuInfo.class
+com\elysia\club\api\pojo\ClubUserInfo.class
+com\elysia\club\api\pojo\ClubItem.class
+com\elysia\club\api\pojo\ClubRoleMenu.class
+com\elysia\club\api\pojo\ClubRoleInfo.class
+com\elysia\club\api\pojo\ClubMenu.class
+com\elysia\club\api\pojo\ClubUser.class
+com\elysia\club\api\pojo\ClubRole.class
+com\elysia\club\api\pojo\ClubMenuItem.class
+com\elysia\club\api\pojo\ClubItemInfo.class
+com\elysia\club\api\dto\ShoppingTradeDto.class
+com\elysia\club\api\common\ClubUserInfoService.class

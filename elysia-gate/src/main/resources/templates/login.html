@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎页</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">登录</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Thymeleaf form with Spring Security CSRF token -->
+                    <!--表单登录中请求的方法必须是POST，因为Spring Security会检查POST请求中是否包含CSRF token。-->
+                    <!--使用动态参数，表单中会自动生成_csrf隐藏字段，用于防止CSRF攻击。-->
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <label for="username">用户名:</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <!-- Display error message if login attempt fails -->
+                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                            错误的用户名或密码！
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">登录</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

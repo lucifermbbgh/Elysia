@@ -4,16 +4,23 @@
 基于spring-cloud-alibaba的微服务项目，主要是学习spring-cloud-alibaba的各个组件，以及spring-cloud-alibaba的整合。
 
 ## 项目结构
-```
-.
-├── README.md
-├── elysia-parent
-├──── elysia-common
-├──── elysia-config
-├──── elysia-gateway
-├──── elysia-market-api
-├──── elysia-market-order
-├──── elysia-market-stock
+```json5
+{
+  "elysia-market-parent": {
+    "java.version": "17",
+    "spring.boot.version": "3.2.0",
+    "spring-cloud.version": "2023.0.0",
+    "spring-cloud-alibaba.version": "2022.0.0.0-RC2",
+    "mysql": "8.0.11",
+    "packages": {
+      "elysia-market-config": "",
+      "elysia-market-gateway": "",
+      "elysia-market-api": "",
+      "elysia-market-order": "",
+      "elysia-market-stock": ""
+    },
+  }
+}
 ```
 
 ### 已整合：

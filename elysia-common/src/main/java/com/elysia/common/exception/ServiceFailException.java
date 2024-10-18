@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class ServiceFailException extends RuntimeException {
-    public static final String DEFAULT_ERROR_CODE = "10001";
+public class ServiceFailException extends Exception {
+    public static final String DEFAULT_ERROR_CODE = "10000001";
     public static final String DEFAULT_ERROR_INFO = "服务处理失败！";
 
-    public String errorCode;
-    public String errorInfo;
+    private String errorCode;
+    private String errorInfo;
 }

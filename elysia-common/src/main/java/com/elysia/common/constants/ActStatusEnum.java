@@ -1,9 +1,12 @@
 package com.elysia.common.constants;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Optional;
 
+@Getter
 public enum ActStatusEnum {
     STATUS_NO_ENABLED(0, "未启用"),
     STATUS_NORMAL(1, "正常"),
@@ -16,22 +19,6 @@ public enum ActStatusEnum {
 
     ActStatusEnum(Integer code, String description) {
         this.code = code;
-        this.description = description;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 

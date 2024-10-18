@@ -2,6 +2,9 @@ package com.elysia.common.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -10,7 +13,6 @@ public class DateUtils {
     private static final String CUSTOM_FORMAT = "yyyy-MM-dd";// 通常的日期格式化格式2000-00-00
     private static final String DETAIL_FORMAT = "yyyy-MM-dd HH:mm:ss";// 带时间详情的格式方式2000-00-00
     private static final String SHORT_YEAR_FORMAT = "yy-MM-d HH:mm";// 采取年简短月简短，不显示秒
-
     private static final String LSH_FORMAT = "yyyyMMdd";// 简洁的格式化方式20000000
     private static final String DETAIL_LSH_FORMAT = "yyyyMMddHHmmss";// 带有详情的时间格式化方式
     private static final String SHORT_FORMAT = "yyMMdd";// 简短的时间格式方式000000
@@ -439,6 +441,103 @@ public class DateUtils {
         cal.setTime(past);
         String stamp = getTimeSocial(cal.getTimeInMillis());
         return stamp;
+    }
+
+    public static long getTimestamp(String dateStr, String pattern) {
+        if (dateStr.length() == pattern.length() && dateStr.length() == 26) {
+            // 调整格式字符串，去除多余的微秒部分，仅保留到毫秒
+            pattern = pattern.replace("SSSSSS", "SSS");
+            dateStr = dateStr.substring(0, dateStr.length() - 3);
+        }
+        try {
+            // 使用调整后的格式解析时间字符串
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+            Date specifiedDate = sdf.parse(dateStr);
+
+            // 获取当前系统时间
+            Date currentDate = new Date();
+            System.out.println(currentDate);
+
+            long currentDateTime = currentDate.getTime();
+            System.out.println("当前系统时间：" + currentDateTime);
+
+            return currentDateTime;
+        } catch (ParseException e) {
+            System.err.println("解析日期时间字符串时出错：" + e.getMessage());
+        }
+        return 0;
+    }
+
+    public static long divideTimeForMinutes(String dateStr, String pattern) {
+        if (dateStr.length() == pattern.length() && dateStr.length() == 26) {
+            // 调整格式字符串，去除多余的微秒部分，仅保留到毫秒
+            pattern = pattern.replace("SSSSSS", "SSS");
+            dateStr = dateStr.substring(0, dateStr.length() - 3);
+        }
+        try {
+            // 使用调整后的格式解析时间字符串
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+            Date specifiedDate = sdf.parse(dateStr);
+
+            // 获取当前系统时间
+            Date currentDate = new Date();
+            System.out.println(currentDate);
+
+            // 计算时间差（以分钟为单位）
+            long diffInMilliseconds = currentDate.getTime() - specifiedDate.getTime();
+            long diffInMinutes = diffInMilliseconds / (60 * 1000); // 转换为分钟
+
+            System.out.println("当前系统时间与指定时间相差 " + Math.abs(diffInMinutes) + " 分钟。");
+
+            return diffInMinutes;
+        } catch (ParseException e) {
+            System.err.println("解析日期时间字符串时出错：" + e.getMessage());
+        }
+        return 0;
+    }
+
+    public static void divideTime(String dateStr, String pattern) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+            Date specifiedDate = sdf.parse(dateStr);
+
+            // 获取当前时间并减去30分钟
+            Calendar calendar = Calendar.getInstance();
+            Date calendarTime = calendar.getTime();
+            System.out.println(calendarTime);
+            calendar.add(Calendar.MINUTE, -30);
+            Date thirtyMinutesAgo = calendar.getTime();
+
+            // 比较指定时间和30分钟前的当前时间
+            long differenceInMillis = specifiedDate.getTime() - thirtyMinutesAgo.getTime();
+            System.out.println("时间差：" + differenceInMillis + "毫秒");
+
+            if (differenceInMillis > 0) {
+                System.out.println("指定时间在当前时间后超过30分钟。");
+            } else if (differenceInMillis < 0) {
+                System.out.println("指定时间在当前时间前超过30分钟。");
+            } else {
+                System.out.println("指定时间与当前时间相差不超过30分钟。");
+            }
+        } catch (ParseException e) {
+            System.err.println("解析日期时间字符串时出错：" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void getDayOfYear(String[] args) {
+        // 假设日期字符串格式为"yyyy-MM-dd"
+        String dateString = "2023-04-15";
+
+        // 创建日期时间格式器匹配输入的字符串格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // 将字符串转换为LocalDate对象
+        LocalDate specificDate = LocalDate.parse(dateString, formatter);
+
+        // 计算并打印该日期是当年的第几天
+        int dayOfYear = specificDate.get(ChronoField.DAY_OF_YEAR);
+        System.out.println(dateString + " 对应的日期是当年的第 " + dayOfYear + " 天。");
     }
 }
 

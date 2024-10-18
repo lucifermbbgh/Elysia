@@ -18,7 +18,7 @@ public class Result<T> extends BaseDto {
 
     public static final Integer SUCCESS = 0;// 服务调用成功
     public static final Integer FAIL = 1;// 服务调用失败
-    public static final Integer UNKNOWN = 2;// 服务调用发生未知错误
+    public static final Integer UNKNOWN = -1;// 服务调用发生未知错误
 
     private Integer resultCode;// 服务调用状态
     private String errorCode;// 错误码

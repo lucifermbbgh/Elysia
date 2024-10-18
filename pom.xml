@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.elysia</groupId>
-    <artifactId>elysia-demo-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>elysia-parent</artifactId>
+    <version>2.0.4-RELEASE</version>
     <packaging>pom</packaging>
-    <name>elysia-demo-parent</name>
+    <name>elysia-parent</name>
     <description>spring cloud alibaba development</description>
     <modules>
-        <module>elysia-core</module>
         <module>elysia-common</module>
-        <module>elysia-gateway</module>
-        <module>elysia-config</module>
+        <module>elysia-club-api</module>
+        <module>elysia-club-article</module>
+        <module>elysia-club-blog</module>
+        <module>elysia-club-config</module>
+        <module>elysia-club-gateway</module>
+        <module>elysia-gate</module>
+        <module>elysia-market-config</module>
+        <module>elysia-market-gateway</module>
+        <module>elysia-market-api</module>
+        <module>elysia-market-order</module>
+        <module>elysia-market-stock</module>
     </modules>
 
     <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.7.17</spring-boot.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <spring.boot.version>3.2.0</spring.boot.version>
+        <spring.boot.test.version>3.1.5</spring.boot.test.version>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2022.0.0.0-RC2</spring-cloud-alibaba.version>
+        <mybatis.springboot.version>3.0.2</mybatis.springboot.version>
+        <mysql.version>8.0.11</mysql.version>
+        <mapper.version>4.2.3</mapper.version>
+        <druid.version>1.1.20</druid.version>
+        <rocketmq.version>2.2.3</rocketmq.version>
+        <elysia-common.version>2.0.4-RELEASE</elysia-common.version>
+        <elysia-club-api.version>2.0.4-RELEASE</elysia-club-api.version>
+        <elysia-market-api.version>2.0.4-RELEASE</elysia-market-api.version>
     </properties>
 
     <dependencyManagement>
@@ -48,87 +66,93 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!--Springboot集成Mybatis-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.springboot.version}</version>
+            </dependency>
+            <!--MySQL8数据库驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!--Springboot集成druid连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--通用Mapper4之tk.mybatis（mybatis的增强）（类似mybatis-plus）-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>${mapper.version}</version>
+            </dependency>
+            <!--rocketmq依赖-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <!--spring-boot-starter-test-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.test.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- elysia-common -->
+            <dependency>
+                <groupId>com.elysia</groupId>
+                <artifactId>elysia-common</artifactId>
+                <version>${elysia-common.version}</version>
+            </dependency>
+            <!-- elysia-api -->
+            <dependency>
+                <groupId>com.elysia</groupId>
+                <artifactId>elysia-club-api</artifactId>
+                <version>${elysia-club-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.elysia</groupId>
+                <artifactId>elysia-market-api</artifactId>
+                <version>${elysia-market-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!--nacos服务注册发现依赖-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!--nacos配置中心依赖-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <!--nacos配置文件加载重构-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-        <!--ribbon负载均衡依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-        </dependency>
-        <!--Sentinel服务流量控制依赖【服务熔断、服务降级、服务流控】-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        <!--openfeign服务客户端-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <!--sentinel集成到nacos依赖-->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
-        </dependency>
-        <!--添加rocketmq依赖-->
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <version>2.2.3</version>
-        </dependency>
+        <!--dubbo依赖-->
+        <!--<dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>3.2.4</version>
+        </dependency>-->
 
-        <!--mybatis依赖-->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <!--mysql驱动依赖-->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-        </dependency>
+        <!--dubbo依赖-->
+        <!--<dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-dubbo</artifactId>
+            <version>2.2.0.RELEASE</version>
+        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring.boot.version}</version>
                 <configuration>
-                    <mainClass>com.elysia.elysiaparent.ElysiaParentApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

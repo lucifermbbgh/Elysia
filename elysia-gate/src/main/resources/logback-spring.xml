@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <springProfile name="local">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <!-- userManager Appender -->
+        <appender name="userManager" class="ch.qos.logback.core.FileAppender">
+            <file>logs/userManager.log</file>
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <!-- userInfoManager Appender -->
+        <appender name="userInfoManager" class="ch.qos.logback.core.FileAppender">
+            <file>logs/userInfoManager.log</file>
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <!-- userManager Logger -->
+        <logger name="userManagerLogger" level="info">
+            <appender-ref ref="userManager" />
+        </logger>
+        <!-- userInfoManager Logger -->
+        <logger name="userInfoManagerLogger" level="info">
+            <appender-ref ref="userInfoManager" />
+        </logger>
+        <!-- MyBatis SQL 日志 -->
+        <logger name="org.mybatis" level="DEBUG"/>
+
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="dev">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <!-- MyBatis SQL 日志 -->
+        <logger name="org.mybatis" level="DEBUG"/>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="pro">
+        <!-- Production environment log configuration -->
+        <!-- ... -->
+    </springProfile>
+</configuration>

@@ -1,0 +1,26 @@
+{
+  "name": "elysia-gate-web",
+  "version": "0.0.1",
+  "description": "elysia-gate-web",
+  "private": true,
+  "keywords": [
+    ""
+  ],
+  "license": "",
+  "author": "ElysiaKafka",
+  "main": "/src/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "dev": "webpack serve --mode development --config webpack.config.dev.js --open"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0"
+  }
+}

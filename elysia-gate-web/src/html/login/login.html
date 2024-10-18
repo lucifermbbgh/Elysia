@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎页</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">登录</h3>
+        </div>
+        <div class="card-body">
+          <!-- 普通HTML表单，CSRF保护需要在后端进行处理 -->
+          <form action="/login" method="post">
+            <div class="form-group">
+              <label for="username">用户名:</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">密码:</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <!-- 假设后端返回错误信息并将其显示在页面上 -->
+            <div id="error-message" class="alert alert-danger d-none" role="alert">
+              错误的用户名或密码！
+            </div>
+            <button id="login" type="submit" class="btn btn-primary btn-block" onclick="login()">登录</button>
+          </form>
+          <button id="login2" type="submit" class="btn btn-primary btn-block" onclick="login()">登录</button>
+          <!-- 使用JavaScript或jQuery等获取后端返回的错误信息并显示 -->
+          <!-- 以下仅为示例，实际实现需配合后端API -->
+<!--          <script src="../../js/login/login.js">-->
+          <script src="/src/js/login/login.js">
+            /*function login(){
+              alert("登录成功")
+            }
+
+            window.onload = function() {
+              if (window.location.search.includes("error=true")) {
+                document.getElementById("error-message").classList.remove("d-none");
+              }
+            };*/
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -2,7 +2,6 @@ package com.elysia.common.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.Iterator;

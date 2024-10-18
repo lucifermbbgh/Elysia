@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class ServiceUnknownException extends RuntimeException {
-    public static final String DEFAULT_ERROR_CODE = "10002";
+public class ServiceUnknownException extends Exception {
+    public static final String DEFAULT_ERROR_CODE = "10000002";
     public static final String DEFAULT_ERROR_INFO = "服务处理发生未知异常！";
 
-    public String errorCode;
-    public String errorInfo;
+    private String errorCode;
+    private String errorInfo;
 }

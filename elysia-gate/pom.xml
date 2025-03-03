@@ -170,7 +170,6 @@
         <dependency>
             <groupId>com.elysia</groupId>
             <artifactId>elysia-common</artifactId>
-            <version>2.0.0-RELEASE</version>
         </dependency>
     </dependencies>
 

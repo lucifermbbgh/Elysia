@@ -22,6 +22,8 @@
         <module>elysia-market-api</module>
         <module>elysia-market-order</module>
         <module>elysia-market-stock</module>
+        <module>elysia-fury</module>
+        <module>elysia-task</module>
     </modules>
 
     <properties>

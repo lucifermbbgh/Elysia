@@ -136,12 +136,6 @@
             <version>3.12.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.fury</groupId>
-            <artifactId>fury-core</artifactId>
-            <version>0.9.0</version>
-        </dependency>
-
         <!--hutool工具包-->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -214,6 +208,13 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <!--swagger测试依赖-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.1.0</version>
         </dependency>
     </dependencies>
 
